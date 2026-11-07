@@ -1,0 +1,19 @@
+# The worked session from the Tzel proposal, corrected.
+# The proposal assumed two ⌒60° arcs would make an open wave and that
+# flipping one would close it into a leaf. ?describe showed the opposite:
+# two same-sign arcs already make a lens, and flipping one collapses it.
+canvas 12x14
+lattice hex
+origin canvas.bottom
+
+stem: arc @hex(-3,6) ⌒20° stroke:#3b6e2a width:0.15
+?here
+bud: circle r:1 sitting-on stem.end fill:#e8a0b4
+leaf: from stem.at(0.4)
+      arc ⌒60° →E×3 as upper
+      arc ⌒60° @stem.at(0.4) as lower
+?describe leaf                 # closed convex lens: already a leaf
+?try leaf.lower ⌒-60°          # what the proposal suggested
+leaf fill:#5a9a3c
+curl: geo ⊙bud from bud.top @bud→E×0.3 wind 1 stroke:#a0405a
+?describe curl

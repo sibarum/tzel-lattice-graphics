@@ -1,0 +1,68 @@
+# A flower in a pot, drawn by Claude in a Tzel session
+canvas 16x18
+lattice hex
+origin canvas.bottom
+mode show-lattice off
+
+ground: line from (-8.5,1) @(7.5,1) stroke:#7a6a55 width:0.1
+
+# the pot: a trapezoid sitting on the ground
+pot: from (-2,1) line →E×4 ; line →NE×3 ; line →W×7 ; line →SE×3 fill:#c2703d stroke:#7a3b1c
+?describe pot
+move pot +(-0.5,0)
+?symmetry pot
+rim: rect w:7.6 h:0.6 sitting-on pot.top fill:#a85a2e stroke:#7a3b1c
+stem: arc from rim.top @rim.top→NE×3→NW×3 ⌒-14° stroke:#3b6e2a width:0.16
+?describe stem
+?here
+petal: from stem.end→E×0.5 arc ⌒70° →E×2.2 ; arc ⌒70° @stem.end→E×0.5 fill:#f2c14e stroke:#b8861b
+?describe petal
+repeat petal 6 around stem.end as petals
+disc: circle r:0.8 at stem.end fill:#6b4226 stroke:#4a2c17 layer:front
+?balance
+?glance
+stem @rim.top→NE×5→NW×5
+scale petals 1.5
+scale disc 1.3
+?describe stem
+?balance
+leaf: from stem.at(0.3) arc ⌒60° @stem.at(0.3)→NE×2.6 ; arc ⌒60° @stem.at(0.3) fill:#5a9a3c stroke:#3b6e2a
+?describe leaf
+copy leaf as leaf2
+mirror leaf2 across stem
+move leaf2 →NW×1
+?crosses leaf2
+del leaf2
+leaf2: from stem.at(0.5) arc ⌒60° @stem.at(0.5)→NW×2.3 ; arc ⌒60° @stem.at(0.5) fill:#5a9a3c stroke:#3b6e2a
+?crosses leaf2
+?try leaf2: from stem.at(0.42) arc ⌒60° @stem.at(0.42)→NW×2 ; arc ⌒60° @stem.at(0.42)
+?try leaf2: from stem.at(0.38) arc ⌒60° @stem.at(0.38)→NW×2.2 ; arc ⌒60° @stem.at(0.38)
+leaf2: from stem.at(0.38) arc ⌒60° @stem.at(0.38)→NW×2.2 ; arc ⌒60° @stem.at(0.38) fill:#5a9a3c stroke:#3b6e2a
+?gap leaf2 petals
+?describe leaf2
+
+# the sun
+sun: circle r:1.1 at canvas.top-left→SE×3→E×1.5 fill:#f6d365 stroke:#e0a526
+ray: line from sun.center→E×1.5 →E×0.8 stroke:#e0a526 width:0.12
+repeat ray 12 around sun.center as rays
+?gap rays petals
+
+# a snail with a log-spiral shell
+body: from (3.6,1) quad @(7.3,1) peak 0.7 ; line @(3.6,1) fill:#c9a77c stroke:#8a5a2b
+sc: point at (4.8,2.2)
+shell: circle r:1.1 at sc fill:#d9b38c stroke:#8a5a2b
+spiral: geo ⊙sc from sc→E×1.0 @sc→E×0.12 wind 2 stroke:#8a5a2b width:0.07
+?describe spiral
+?describe body
+sc at (4.5,2.7)
+body.1 peak 0.95
+stalk: line from body.right→W×0.55 ∠62° ⟷1.1 stroke:#8a5a2b width:0.07
+eye: dot at stalk.end r:0.13 fill:#4a2c17 stroke:#4a2c17
+stalk2: line from body.right→W×0.75 ∠85° ⟷1.0 stroke:#8a5a2b width:0.07
+eye2: dot at stalk2.end r:0.13 fill:#4a2c17 stroke:#4a2c17
+group snail: body, sc, shell, spiral, stalk, eye, stalk2, eye2
+move snail →W×0.8
+?describe snail
+?gap snail pot
+?balance
+?glance

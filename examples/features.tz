@@ -1,0 +1,40 @@
+# exercise every feature once
+canvas 20x14
+lattice grid
+mode feedback verbose
+
+a: line →E×4
+b: line ∠90° ⟷3
+c: arc ⌒90° ⟷2
+d: line @(4,0) ∠45°            # mismatch on purpose
+e: quad →E×4 peak 1.5
+f: geo ⊙origin from (2,0) @(0,-3) wind 1
+mode feedback push
+sq: rect w:2 h:2 at (-6,4) fill:#cde
+label: text "square" below sq gap 0.3
+dot1: dot at sq.top-right
+turn sq 45
+scale sq 1.5
+move sq →N×1
+?describe sq
+?gap label sq
+petal: circle r:0.4 at (6,5)
+repeat petal 6 around (6,4) as petals
+?names
+turn petals 15
+mode snap lattice
+g: line ∠30° ⟷3.3
+?where g.end
+?on hex g
+?crosses a
+?balance
+?symmetry sq
+group left: sq, label, dot1
+mirror left
+assert inside canvas petals
+assert no-overlap a b
+del dot1
+?names
+style petals fill:#f5c2c7
+?modes
+?overview
